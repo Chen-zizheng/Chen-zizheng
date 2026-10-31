@@ -97,5 +97,5 @@ AI 应用     提示词结构化约束 · JSON 容错解析 · 输出校验与�
 
 ## 📫 联系
 
-- 邮箱：`chen.zizheng@student.uni-miskolc.hu`
+- 邮箱：`chenzizheng2026@163.com`
 - GitHub：[github.com/Chen-zizheng](https://github.com/Chen-zizheng)
