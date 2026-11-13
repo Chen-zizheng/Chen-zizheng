@@ -2,7 +2,7 @@
 
 # 陈子政 · Chen Zizheng
 
-**Java · C / C++ · Python**
+**Java · C / C++ · Python · SQL**
 
 2027 届 · 米什科尔茨大学 计算机科学 本科
 
@@ -33,7 +33,7 @@
 
 `C++17` · `epoll / WSAPoll` · `多线程` · `CMake`
 
-同一份源码，Linux 走 epoll、Windows 走 WSAPoll；按行切分，处理粘包、半包、CRLF 和超长行。有界队列接 4 个写盘线程，256 KiB 一批。
+Linux 走 epoll、Windows 走 WSAPoll，两套反应堆共用一份按行切分的解析逻辑：粘包、半包、CRLF、超长行都在这里处理。有界队列接 4 个写盘线程，256 KiB 一批。
 
 WSL2 上 2,172,960 行、186,560 行/s、零丢弃，同一份代码在 Windows 上 777,461 行/s。每批 flush 让 Linux 掉 3.6%，换来 `tail -f` 实时可见。
 
@@ -76,7 +76,7 @@ WSL2 上 2,172,960 行、186,560 行/s、零丢弃，同一份代码在 Windows 
 
 `Unity（团结引擎）` · `C#` · `ShaderLab / HLSL`
 
-8 个场景的关卡循环：主菜单、选角、地图、篝火、战斗、奖励、商店、失败结算。玩法逻辑用 C#，卡牌翻转、UI 流光、标题呼吸、受击闪色由 DOTween 与 Image.color 插值驱动，没有写 shader。
+8 个场景的关卡循环：主菜单、选角、地图、篝火、战斗、奖励、商店、失败结算。玩法逻辑用 C#，卡牌翻转、UI 流光、标题呼吸、受击闪色由 DOTween 与 Image.color 插值驱动，工程里的 shader 只有 TextMesh Pro 包自带的那些。
 
 <sub>[→ CardGame](https://github.com/Chen-zizheng/CardGame) · [Windows x64 包](https://github.com/Chen-zizheng/CardGame/releases)</sub>
 
@@ -95,6 +95,34 @@ WSL2 上 2,172,960 行、186,560 行/s、零丢弃，同一份代码在 Windows 
 
 </td>
 </tr>
+<tr>
+<td width="50%" valign="top">
+
+### 📊 电商销售 BI 仓库
+
+`MySQL 8.4` · `pandas` · `SQLAlchemy` · `FastAPI` · `SVG 看板`
+
+6 张源表建成 1 事实 6 维：30 家门店、2,000 个 SKU、300,006 单、750,530 行明细。12 条质量规则跑 11.3 秒，7 条脏数据按 R1–R7 各拦 1 条，源仓对账 300,006 单零差异。
+
+增量装载按 `updated_at` 水位线。MySQL 的 DATETIME 默认只到秒，同一秒写入的行跟水位线撞平被漏掉，改成 `DATETIME(6)` 才不丢。看板 6 个 KPI 加 8 个面板，行级权限按接口传入的身份过滤。
+
+<sub>[→ ecom-bi-warehouse](https://github.com/Chen-zizheng/ecom-bi-warehouse)</sub>
+
+</td>
+<td width="50%" valign="top">
+
+### 📈 用户漏斗与留存
+
+`MySQL 8.4` · `pandas` · `matplotlib` · `FastAPI`
+
+60,000 名用户、390,954 条埋点、147,161 个会话：浏览到支付留下 5.9%，加购那一步只剩 25.6%；微信加购到支付 30.6%，联盟 13.7%。
+
+漏斗按会话聚合，不按人——按人会把「今天看、明天买」并成一次转化。cohort 留存 D1 34.3%、D7 15.7%、D30 5.2%，首末两头不满整周的 cohort 剔掉。12 张图拼成 6 页 A4 HTML，打印直接出 PDF。
+
+<sub>[→ user-funnel-retention](https://github.com/Chen-zizheng/user-funnel-retention)</sub>
+
+</td>
+</tr>
 </table>
 
 ---
@@ -105,6 +133,7 @@ WSL2 上 2,172,960 行、186,560 行/s、零丢弃，同一份代码在 Windows 
 | :-- | :-- |
 | **语言** | `Java` `C/C++` `Python` `C#` `JavaScript` `SQL` |
 | **后端** | `Spring Boot` `MyBatis` `FastAPI` `H2` `REST / JSON` `乐观锁` |
+| **数据** | `MySQL 星型建模` `窗口函数 / CTE` `updated_at 增量装载` `12 条质量规则` `pandas` `matplotlib` |
 | **系统** | `Linux / epoll` `多线程` `有界队列` `批量 I/O` `CMake` `GDB` |
 | **测试** | `pytest` `JUnit 5 + MockMvc` `等价类 / 边界值 / 场景法` `GitHub Actions` |
 | **AI** | `提示词结构化约束` `JSON 降级解析` `输出校验` `DeepSeek / OpenAI SDK` |
