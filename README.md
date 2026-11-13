@@ -76,7 +76,7 @@ WSL2 上 2,172,960 行、186,560 行/s、零丢弃，同一份代码在 Windows 
 
 `Unity（团结引擎）` · `C#` · `ShaderLab / HLSL`
 
-8 个场景的关卡循环：主菜单、选角、地图、篝火、战斗、奖励、商店、失败结算。玩法逻辑用 C#，卡牌翻转、UI 流光、标题呼吸、受击闪烁四个动效用自写 Shader。
+8 个场景的关卡循环：主菜单、选角、地图、篝火、战斗、奖励、商店、失败结算。玩法逻辑用 C#，卡牌翻转、UI 流光、标题呼吸、受击闪色由 DOTween 与 Image.color 插值驱动，没有写 shader。
 
 <sub>[→ CardGame](https://github.com/Chen-zizheng/CardGame) · [Windows x64 包](https://github.com/Chen-zizheng/CardGame/releases)</sub>
 
@@ -87,9 +87,9 @@ WSL2 上 2,172,960 行、186,560 行/s、零丢弃，同一份代码在 Windows 
 
 `Unity` · `C#` · `ShaderLab / HLSL`
 
-移动、跳跃、冲刺、攻击的输入响应与动作状态切换，伤害结算与 UI 反馈联动。
+移动、跳跃、冲刺、攻击的输入响应与动作状态切换，伤害结算与 UI 反馈联动。16 个 C# 脚本共 1,269 行，另有一个 71 行的受击闪红 shader。
 
-ShaderLab + HLSL 占全仓代码 69%（GitHub Languages 统计）。
+仓库里其余 17 个 shader 是 TextMesh Pro 包自带的，占全仓 shader 行数 97%。
 
 <sub>[→ PixActionGame](https://github.com/Chen-zizheng/PixActionGame)</sub>
 
