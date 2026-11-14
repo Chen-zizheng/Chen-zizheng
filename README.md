@@ -1,4 +1,4 @@
-<div align="center">
+﻿<div align="center">
 
 # 陈子政 · Chen Zizheng
 
@@ -151,6 +151,22 @@ vcan0 上 20 秒发 57,860 帧、2,893 帧/s，12,877 次崩溃去重成 12 个�
 
 </td>
 </tr>
+<tr>
+<td width="50%" valign="top">
+
+### 🤖 robotlink · 机器人联调与故障注入
+
+`Python` · `TCP 帧协议` · `状态机` · `故障注入`
+
+16 字节头加 CRC16 的帧协议，流式解析器吃半包和粘包；本体是 BOOT/SELF_TEST/IDLE/RUNNING/ESTOP/FAULT 状态机，急停插在所有状态检查之前，seq 重复包直接回 dup、不二次启动任务。
+
+客户端超时用同一个 seq 重发。中间那个 TCP 代理能丢包、重复、乱序、按 MTU 切片、到点断连。五种链路各 20 轮，95 轮一次通过，5 次超时全部按 query 收尾回到 IDLE；30 秒长稳 RSS 涨 0.11 MB、线程停在 7。20 条 pytest。
+
+<sub>[→ robotlink](https://github.com/Chen-zizheng/robotlink)</sub>
+
+</td>
+<td width="50%" valign="top"></td>
+</tr>
 </table>
 
 ---
@@ -163,7 +179,7 @@ vcan0 上 20 秒发 57,860 帧、2,893 帧/s，12,877 次崩溃去重成 12 个�
 | **后端** | `Spring Boot` `MyBatis` `FastAPI` `H2` `REST / JSON` `乐观锁` |
 | **数据** | `MySQL 星型建模` `窗口函数 / CTE` `updated_at 增量装载` `12 条质量规则` `pandas` `matplotlib` |
 | **系统** | `Linux / epoll` `多线程` `有界队列` `批量 I/O` `CAN / vcan` `CMake` `GDB` |
-| **测试** | `pytest` `写 pytest 插件` `JUnit 5 + MockMvc` `等价类 / 边界值 / 场景法` `GitHub Actions` |
+| **测试** | `pytest` `写 pytest 插件` `JUnit 5 + MockMvc` `等价类 / 边界值 / 场景法` `GitHub Actions` `丢包 / 重复注入` |
 | **AI** | `提示词结构化约束` `JSON 降级解析` `输出校验` `DeepSeek / OpenAI SDK` |
 | **游戏** | `Unity（团结引擎）` `ShaderLab / HLSL` `UGUI` `DOTween` |
 | **工程** | `Git / GitHub` `Maven` `CMake` `Docker（了解）` |
