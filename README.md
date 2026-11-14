@@ -160,7 +160,7 @@ vcan0 上 20 秒发 57,860 帧、2,893 帧/s，12,877 次崩溃去重成 12 个�
 
 16 字节头加 CRC16 的帧协议，流式解析器吃半包和粘包；本体是 BOOT/SELF_TEST/IDLE/RUNNING/ESTOP/FAULT 状态机，急停插在所有状态检查之前，seq 重复包直接回 dup、不二次启动任务。
 
-客户端超时用同一个 seq 重发。中间那个 TCP 代理能丢包、重复、乱序、按 MTU 切片、到点断连。五种链路各 20 轮，95 轮一次通过，5 次超时全部按 query 收尾回到 IDLE；30 秒长稳 RSS 涨 0.11 MB、线程停在 7。20 条 pytest。
+客户端超时用同一个 seq 重发。中间那个 TCP 代理能丢包、重复、乱序、按 MTU 切片、到点断连。五种链路各 20 轮，95 轮一次通过，5 次超时全部按 query 收尾回到 IDLE；30 秒长稳 RSS 涨 0.11 MB、线程停在 7。24 条 pytest。
 
 <sub>[→ robotlink](https://github.com/Chen-zizheng/robotlink)</sub>
 
