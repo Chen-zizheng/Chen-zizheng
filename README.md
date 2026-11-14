@@ -123,6 +123,34 @@ WSL2 上 2,172,960 行、186,560 行/s、零丢弃，同一份代码在 Windows 
 
 </td>
 </tr>
+<tr>
+<td width="50%" valign="top">
+
+### 🧪 canfault · CAN 故障注入与模糊测试
+
+`Python` · `python-can` · `vcan` · `pytest`
+
+6 类故障注入（丢帧、重复、DLC 篡改、信号越界、负载拉高、时序漂移）都是纯函数，同一份 384 帧种子能复现每一类；被测 ECU 也自己写，崩溃才追得下去。
+
+vcan0 上 20 秒发 57,860 帧、2,893 帧/s，12,877 次崩溃去重成 12 个缺陷——去重键把报文里的数字抹平，同一条 DLC 规则才不会被报成十几种。
+
+<sub>[→ canfault](https://github.com/Chen-zizheng/canfault)</sub>
+
+</td>
+<td width="50%" valign="top">
+
+### 🚦 pytest-gate · 用例分级 / 重跑 / 门禁
+
+`Python` · `pytest` · `pytester`
+
+150 行插件：`--level` 分级、`--gate-reruns` 在 protocol 层整轮重跑、`--gate-report` 出机器可读汇总、`--gate-max-fail` 超阈值用退出码 2。
+
+在 canfault 上冒烟 22 条 0.22 秒、全量 26 条 3.46 秒，慢的 4 条吃掉 94% 的时间。
+
+<sub>[→ pytest-gate](https://github.com/Chen-zizheng/pytest-gate)</sub>
+
+</td>
+</tr>
 </table>
 
 ---
@@ -134,8 +162,8 @@ WSL2 上 2,172,960 行、186,560 行/s、零丢弃，同一份代码在 Windows 
 | **语言** | `Java` `C/C++` `Python` `C#` `JavaScript` `SQL` |
 | **后端** | `Spring Boot` `MyBatis` `FastAPI` `H2` `REST / JSON` `乐观锁` |
 | **数据** | `MySQL 星型建模` `窗口函数 / CTE` `updated_at 增量装载` `12 条质量规则` `pandas` `matplotlib` |
-| **系统** | `Linux / epoll` `多线程` `有界队列` `批量 I/O` `CMake` `GDB` |
-| **测试** | `pytest` `JUnit 5 + MockMvc` `等价类 / 边界值 / 场景法` `GitHub Actions` |
+| **系统** | `Linux / epoll` `多线程` `有界队列` `批量 I/O` `CAN / vcan` `CMake` `GDB` |
+| **测试** | `pytest` `写 pytest 插件` `JUnit 5 + MockMvc` `等价类 / 边界值 / 场景法` `GitHub Actions` |
 | **AI** | `提示词结构化约束` `JSON 降级解析` `输出校验` `DeepSeek / OpenAI SDK` |
 | **游戏** | `Unity（团结引擎）` `ShaderLab / HLSL` `UGUI` `DOTween` |
 | **工程** | `Git / GitHub` `Maven` `CMake` `Docker（了解）` |
