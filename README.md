@@ -1,4 +1,4 @@
-﻿<div align="center">
+<div align="center">
 
 # 陈子政 · Chen Zizheng
 
@@ -165,7 +165,19 @@ vcan0 上 20 秒发 57,860 帧、2,893 帧/s，12,877 次崩溃去重成 12 个�
 <sub>[→ robotlink](https://github.com/Chen-zizheng/robotlink)</sub>
 
 </td>
-<td width="50%" valign="top"></td>
+<td width="50%" valign="top">
+
+### 🧮 metric-agent · 语义层问数
+
+`Python` · `MySQL 8.4` · `FastAPI` · `语义层 YAML`
+
+用中文问「2026 年 10 月各品类的净销售额」，答数字、口径和这条 SQL。8 个指标、4 个维度写在 YAML 里，SQL 由模板拼、取值走 `%s`；「各省份的净销售额」报 `DIM_NOT_DEFINED`，不会去掉分组返回全表合计。
+
+60 条评测（47 正例 + 13 反例）的期望值用独立 SQL 算，指标、维度、数值全对上，反例 13/13，p50 1.58 s。base 走 `v_sales_wide`（4.87 亿），`fact_sales` 含退款与关闭单会多算 10%。
+
+<sub>[→ metric-agent](https://github.com/Chen-zizheng/metric-agent)</sub>
+
+</td>
 </tr>
 </table>
 
@@ -177,7 +189,7 @@ vcan0 上 20 秒发 57,860 帧、2,893 帧/s，12,877 次崩溃去重成 12 个�
 | :-- | :-- |
 | **语言** | `Java` `C/C++` `Python` `C#` `JavaScript` `SQL` |
 | **后端** | `Spring Boot` `MyBatis` `FastAPI` `H2` `REST / JSON` `乐观锁` |
-| **数据** | `MySQL 星型建模` `窗口函数 / CTE` `updated_at 增量装载` `12 条质量规则` `pandas` `matplotlib` |
+| **数据** | `MySQL 星型建模` `窗口函数 / CTE` `updated_at 增量装载` `12 条质量规则` `语义层 / 指标口径` `pandas` `matplotlib` |
 | **系统** | `Linux / epoll` `多线程` `有界队列` `批量 I/O` `CAN / vcan` `CMake` `GDB` |
 | **测试** | `pytest` `写 pytest 插件` `JUnit 5 + MockMvc` `等价类 / 边界值 / 场景法` `GitHub Actions` `丢包 / 重复注入` |
 | **AI** | `提示词结构化约束` `JSON 降级解析` `输出校验` `DeepSeek / OpenAI SDK` |
